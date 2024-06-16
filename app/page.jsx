@@ -6,7 +6,7 @@ import React from 'react'
 
 // import Link from 'next/link'
 
-const HomePage = () => {
+const HomePage =  () => {
   return (
     <div>
       <Hero/>
