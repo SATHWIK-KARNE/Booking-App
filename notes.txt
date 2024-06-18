@@ -1,0 +1,18 @@
+1) in next js routes will be defined in app folder
+so if x folder is created inside app => /x endpoint. this folder can have subfolder(y)=> /x/y endpoint.
+
+2) each of these folders should have page.jsx to show pages
+
+3)[id] is called slug so it will accept any number as endpoint ex: /properties/1
+
+4) api folder in app will have server api's. They will make direct requests to mongoDB to get data 
+5) /api/properties will fetch all properties from mongoDB using Property.find({}) f(n)
+6) /api/properties/id will fetch 1 property from mongoDB using it's id => Property.findById(params.id);
+
+7)these api's will just show data on page.  fetchProperties() and fetchProperty(id) functions will get data from above api's
+
+7)/properties will call fetchProperties() to get all properties and shows all properties cards
+
+8)but we have a problem with /properties/id while calling fetchProperty(id) cuz id is dynamic and determined at calling time
+-> so This page relies on client-side specific features, like the browser's URL parameters, to fetch the correct property data.
+->Since the id parameter is dynamic, the page can't be pre-rendered on the server(SSR). Instead, the client-side component needs to fetch the data using useEffect and render the property details accordingly(CSR).Therefore only this page uses client side not /properties page
