@@ -39,3 +39,8 @@ to generate this secret(linux)=> openssl rand -base64 32
    -turn it into array buffer. Get data from that
    -upload it to cloudinary and cloudinary gives url as Response
    -put that url in images array() and later to db. 
+
+12)newly added property will not show up in /property unless we do hard refresh. To fix it 2 ways
+  -add timestamps to end of URL in request.js like=>
+       const res= await fetch(`${apiDomain}/properties?_=${timestamp}`); 
+  -dont store cache=> const res= await fetch(`${apiDomain}/properties`,{cache:"no-store"}); 
