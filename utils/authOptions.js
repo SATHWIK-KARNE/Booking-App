@@ -1,3 +1,5 @@
+import connectDB from "@/config/database";
+import User from "@/models/User";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions= {
@@ -20,15 +22,36 @@ export const authOptions= {
     // invoked on successful signIn:
     async signIn({profile}){
       // 1.connect to db
+      await connectDB();
+    
       // 2. check if user trying to logging in exists
+      const userExists = await User.findOne({email: profile.email});
+
       // 3.if not=> add user to db and return true
+      if(!userExists){
+        // if username is too long truncate it
+        const username = profile.name.slice(0, 20);
+        await User.create({
+          email:profile.email,
+          username,
+          image:profile.picture
+        });
+      }
+
       // 4.else return true to allow signIn 
+      return true;
     },
+
     // modifies the session object
     async session({session}){
       // 1.get user from db who is signed in
+      const user= await User.findOne({email:session.user.email});
+
       // 2.assign user id to session
-      // 3return this session
+      session.user.id= user._id.toString();
+
+      // 3.return this session
+      return session;
     }
   }
 };
