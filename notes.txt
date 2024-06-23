@@ -32,3 +32,10 @@ to generate this secret(linux)=> openssl rand -base64 32
   And we loop through this object to get id and pass it to signIn in button:
     <button onClick={()=>signIn(provider.id)}
   which will show signin with google page
+
+11)form is submitted at route POST. The images selected in form should be uploaded to cloudinary.The process is:
+
+   -select image in form 
+   -turn it into array buffer. Get data from that
+   -upload it to cloudinary and cloudinary gives url as Response
+   -put that url in images array() and later to db. 
