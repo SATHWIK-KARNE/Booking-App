@@ -16,3 +16,19 @@ so if x folder is created inside app => /x endpoint. this folder can have subfol
 8)but we have a problem with /properties/id while calling fetchProperty(id) cuz id is dynamic and determined at calling time
 -> so This page relies on client-side specific features, like the browser's URL parameters, to fetch the correct property data.
 ->Since the id parameter is dynamic, the page can't be pre-rendered on the server(SSR). Instead, the client-side component needs to fetch the data using useEffect and render the property details accordingly(CSR).Therefore only this page uses client side not /properties page
+
+
+9)NEXTAUTH_URL_SECRET=>Used to encrypt the NextAuth.js JWT, and to hash email verification tokens. This is the default value for the secret option in NextAuth and Middleware.
+to generate this secret(linux)=> openssl rand -base64 32
+
+10)providers(google) After calling getProviders() result is an object:
+
+  google: 
+    callbackUrl: "http://localhost:3000/api/auth/callback/google"
+    id: "google"
+    name: "Google"
+    signinUrl: "http://localhost:3000/api/auth/signin/google"
+    type: "oauth"
+  And we loop through this object to get id and pass it to signIn in button:
+    <button onClick={()=>signIn(provider.id)}
+  which will show signin with google page
