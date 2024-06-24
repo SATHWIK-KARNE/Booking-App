@@ -4,27 +4,27 @@ import React, { useEffect, useState } from "react";
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
-    type: "Apartment",
-    name: "Test",
+    type: "",
+    name: "",
     description: "",
     location: {
       street: "",
-      city: "Test",
-      state: "Test",
+      city: "",
+      state: "",
       zipcode: "",
     },
-    beds: "3",
-    baths: "2",
-    square_feet: "1000",
-    amenities: ["Free Parking"], //this checkbox is automatically ticked
+    beds: "",
+    baths: "",
+    square_feet: "",
+    amenities: [], //this checkbox is automatically ticked
     rates: {
       weekly: "",
-      monthly: "2000",
-      nightly: "500",
+      monthly: "",
+      nightly: "",
     },
     seller_info: {
       name: "",
-      email: "test@gmai.com",
+      email: "",
       phone: "",
     },
     images: [],

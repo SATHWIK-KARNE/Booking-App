@@ -44,3 +44,5 @@ to generate this secret(linux)=> openssl rand -base64 32
   -add timestamps to end of URL in request.js like=>
        const res= await fetch(`${apiDomain}/properties?_=${timestamp}`); 
   -dont store cache=> const res= await fetch(`${apiDomain}/properties`,{cache:"no-store"}); 
+
+13) the route /api/properties/user/:userId will get all properties of 1 user. This result is called in /profile/page.jsx page
