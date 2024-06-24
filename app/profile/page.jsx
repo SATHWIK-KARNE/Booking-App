@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import profileDefault from '@/assets/images/profile.png';
 import Spinner from '@/components/Spinner';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -41,7 +41,36 @@ const ProfilePage = () => {
       fetchUserProperties(session.user.id);
     }
   }, [session]);
-  const handleDeleteProperty = async () => {}
+
+  const handleDeleteProperty = async (propertyId) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this property?'
+    );
+
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/properties/${propertyId}`, {
+        method: 'DELETE',
+      });
+
+      if (res.status === 200) {
+        // Remove the property from state else we have to reload this page to see it gone
+        const updatedProperties = properties.filter(
+          (property) => property._id !== propertyId
+        );
+
+        setProperties(updatedProperties);
+
+        toast.success('Property Deleted');
+      } else {
+        toast.error('Failed to delete property');
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Failed to delete property');
+    }
+  };
   
 
   return (
