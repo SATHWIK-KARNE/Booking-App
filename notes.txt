@@ -46,3 +46,10 @@ to generate this secret(linux)=> openssl rand -base64 32
   -dont store cache=> const res= await fetch(`${apiDomain}/properties`,{cache:"no-store"}); 
 
 13) the route /api/properties/user/:userId will get all properties of 1 user. This result is called in /profile/page.jsx page
+
+14)Edit property=> looks same as add property page(propertyAddForm.jsx) but we need "PUT" like functionality instead of POST. So we use handleSubmit() f(n) in form onSubmit instead of form action.
+But handling Image(handleImageChange()) changes here is too much work so it's not implemented here. Also removed selecting images in edit form. images[] is removed from state(fields) as well.
+
+15)While editing form, all fields are preloaded with prev values using "fetchProperty()" from utils/requests.js.
+
+16) PUT route api is similar to add property route(POST) api(properties/route.js). Instead of saving property by .save() we update it by findByIdAndUpdate(id). So in /properties/:id/edit page we update values and submit which will send PUT request to /api/properties/:id
