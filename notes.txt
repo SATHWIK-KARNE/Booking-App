@@ -53,3 +53,6 @@ But handling Image(handleImageChange()) changes here is too much work so it's no
 15)While editing form, all fields are preloaded with prev values using "fetchProperty()" from utils/requests.js.
 
 16) PUT route api is similar to add property route(POST) api(properties/route.js). Instead of saving property by .save() we update it by findByIdAndUpdate(id). So in /properties/:id/edit page we update values and submit which will send PUT request to /api/properties/:id
+
+17) After bookmarking if we reload it is gone cuz we page reloads we need to check if it is bookmarked or not. Done using api/bookmarks/check/route.js.
+This is similar to "add bookmark" in bookmarks/route.js. Here we just check and return and do nothing else.
