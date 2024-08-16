@@ -56,3 +56,5 @@ But handling Image(handleImageChange()) changes here is too much work so it's no
 
 17) After bookmarking if we reload it is gone cuz we page reloads we need to check if it is bookmarked or not. Done using api/bookmarks/check/route.js.
 This is similar to "add bookmark" in bookmarks/route.js. Here we just check and return and do nothing else.
+
+18)/api/bookmarks show all bookmarks of current user

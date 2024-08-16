@@ -5,31 +5,31 @@ import { getSessionUser } from "@/utils/getSessionUser";
 
 export const dynamic = "force-dynamic"; //when deploying this will solve an error 
 
-// // GET /api/bookmarks
-// export const GET = async () => {
-//   try {
-//     await connectDB();
+// GET /api/bookmarks
+export const GET = async () => {
+  try {
+    await connectDB();
 
-//     const sessionUser = await getSessionUser();
+    const sessionUser = await getSessionUser();
 
-//     if (!sessionUser || !sessionUser.userId) {
-//       return new Response("User ID is required", { status: 401 });
-//     }
+    if (!sessionUser || !sessionUser.userId) {
+      return new Response("User ID is required", { status: 401 });
+    }
 
-//     const { userId } = sessionUser;
+    const { userId } = sessionUser;
 
-//     // Find user in database
-//     const user = await User.findOne({ _id: userId });
+    // Find user in database
+    const user = await User.findOne({ _id: userId });
 
-//     // Get users bookmarks
-//     const bookmarks = await Property.find({ _id: { $in: user.bookmarks } });
+    // Get users bookmarks
+    const bookmarks = await Property.find({ _id: { $in: user.bookmarks } });
 
-//     return new Response(JSON.stringify(bookmarks), { status: 200 });
-//   } catch (error) {
-//     console.log(error);
-//     return new Response("Something went wrong", { status: 500 });
-//   }
-// };
+    return new Response(JSON.stringify(bookmarks), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response("Cannot find Bookmarks of user", { status: 500 });
+  }
+};
 
 // add a bookmark to a property in db using post
 export const POST = async (request) => {

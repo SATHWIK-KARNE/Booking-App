@@ -4,6 +4,8 @@ import { getSessionUser } from '@/utils/getSessionUser';
 
 export const dynamic = 'force-dynamic';
 
+
+//api/bookmarks/check => just to check whether this property is bookmarked /not
 export const POST = async (request) => {
   try {
     await connectDB();

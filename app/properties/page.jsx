@@ -6,11 +6,10 @@ import { fetchProperties } from "@/utils/requests";
 // /api/properties will fetch data from mongodb and show as response
 // here we fetch that response data to show properties in /properties page
 
-
-
-const PropertiesPage = async ()  => {
-  const properties= await fetchProperties();
-  properties.sort((a,b)=>new Date(b.createdAt)- new Date(a.createdAt));
+const PropertiesPage = async () => {
+  const properties = await fetchProperties();
+  properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
   return (
     <section className="px-4 py-6">
       <div className="container-xl lg:container m-auto px-4 py-6">
@@ -19,7 +18,7 @@ const PropertiesPage = async ()  => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {properties.map((property) => (
-              <PropertyCard key={property._id} property={property}/>
+              <PropertyCard key={property._id} property={property} />
             ))}
           </div>
         )}
